@@ -1,0 +1,59 @@
+table, caption, td, th {
+	padding:0;
+	margin:0;
+}
+
+body, table {
+	font:normal 1em/1.5 "segoe ui",helvetica,sans-serif;
+}
+
+body {
+	background:#DEF;
+}
+
+table {
+	margin:0 auto;
+	background:#FFF;
+}
+
+caption {
+	text-align:center;
+	font-size:1.25em;
+	font-weight:bold;
+	background:#ACE;
+	padding:0.4em;
+}
+
+th, td {
+	padding:0 1em;
+}
+
+th {
+	text-align:left;
+	font-weight:normal;
+}
+
+caption > span,
+th > span {
+	display:inline-block;
+	width:2em;
+	text-align:center;
+}
+
+th + td {
+	text-align:right;
+}
+
+tbody tr:first-child > * {
+	padding-top:1em;
+}
+
+tbody tr:last-child > * {
+	padding-bottom:1em;
+}
+
+tfoot td {
+	background:#ACE;
+	text-align:center;
+	padding:0.5em 1em;
+}

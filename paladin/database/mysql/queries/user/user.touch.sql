@@ -1,0 +1,3 @@
+UPDATE !PREFIX!users
+SET last_access = CURRENT_TIMESTAMP
+WHERE id = ?

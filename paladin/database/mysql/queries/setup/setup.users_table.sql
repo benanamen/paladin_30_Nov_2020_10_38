@@ -1,0 +1,11 @@
+	CREATE TABLE !PREFIX!users (
+		id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		name VARCHAR(127) UNIQUE,
+		username VARCHAR(63) UNIQUE,
+		password VARCHAR(255),
+		register_email VARCHAR(320),
+		contact_email VARCHAR(320),
+		created DATETIME DEFAULT CURRENT_TIMESTAMP,
+		last_access DATETIME DEFAULT CURRENT_TIMESTAMP,
+		INDEX (name, username, last_access)
+	)

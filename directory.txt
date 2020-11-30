@@ -1,0 +1,143 @@
+Paladin X Milestone - 30 Nov 2020 10:38 GMT
+
+/
+  default.ini.php                                                     472 B 
+  index.php                                                           298 B 
+  robots.txt                                                           26 B 
+  user.ini.php                                                        440 B 
+  /actions
+    /actions/contact
+      contact.process.php                                             437 B 
+      contact.success.content.php                                     301 B 
+    /actions/setup
+      setup.content.php                                               967 B 
+      setup.install.php                                              1196 B 
+      setup.process.php                                               418 B 
+    /actions/static
+      static.process.php                                              691 B 
+      /actions/static/pages
+        /actions/static/pages/default
+          default.ini.php                                             395 B 
+          default.static                                              831 B 
+  /database
+    /database/mysql
+      mysql.database.php                                             4574 B 
+      /database/mysql/queries
+        /database/mysql/queries/common
+          common.queries.ini.php                                      119 B 
+        /database/mysql/queries/setup
+          setup.auth.ini.php                                           32 B 
+          setup.queries.ini.php                                       229 B 
+          setup.user_permissions_table.sql                            144 B 
+          setup.users_table.sql                                       381 B 
+        /database/mysql/queries/user
+          user.,get.sql                                                51 B 
+          user.hasPermission.sql                                       80 B 
+          user.login.sql                                               73 B 
+          user.touch.sql                                               71 B 
+  /extras
+    /extras/advert
+      advert.extra.static                                              88 B 
+    /extras/sample1
+      sample1.extra.static                                            385 B 
+    /extras/sample2
+      sample2.extra.static                                            444 B 
+  /fragments
+    footer.static                                                      72 B 
+  /images
+    skyscraperAdvertPlaceholder.png                                   371 B 
+  /includes
+    httpError.php                                                     697 B 
+    langError.php                                                     999 B 
+  /lang
+    /lang/en
+      /lang/en/contact
+        messageSent.txt                                                12 B 
+      /lang/en/contactUsModal
+        contactUsModal.ini.php                                        164 B 
+      /lang/en/errors
+        alreadyStartedDesc.txt                                         79 B 
+        alreadyStartedTitle.txt                                        31 B 
+        dbExecErrorDesc.txt                                            39 B 
+        dbExecErrorTitle.txt                                           20 B 
+        dbPrepareErrorDesc.txt                                         39 B 
+        dbPrepareErrorTitle.txt                                        23 B 
+        dbQueryErrorDesc.txt                                           39 B 
+        dbQueryErrorTitle.txt                                          21 B 
+        dbTablesMissingDesc.txt                                        27 B 
+        dbTablesMissingTitle.txt                                       23 B 
+        errors.ini.php                                                210 B 
+        invalidTableNameDesc.txt                                       78 B 
+        invalidTableNameTitle.txt                                      18 B 
+        invalidUriDesc.txt                                             55 B 
+        invalidUriTitle.txt                                            11 B 
+        mainAlreadyStartedDesc.txt                                     58 B 
+        mainAlreadyStartedTitle.txt                                    22 B 
+        queryNotFoundDesc.txt                                          25 B 
+        queryNotFoundTitle.txt                                         15 B 
+        setupAlreadyRunDesc.txt                                        26 B 
+        setupAlreadyRunTitle.txt                                       29 B 
+        templateLoadFailedDesc.txt                                     37 B 
+        templateLoadFailedTitle.txt                                    20 B 
+        unauthorizedQueryDesc.txt                                      59 B 
+        unauthorizedQueryTitle.txt                                     26 B 
+      /lang/en/httpErrors
+        400.txt                                                        11 B 
+        401.txt                                                        12 B 
+        402.txt                                                        16 B 
+        403.txt                                                         9 B 
+        404.txt                                                         9 B 
+        405.txt                                                        18 B 
+        406.txt                                                        14 B 
+        407.txt                                                        29 B 
+        408.txt                                                        15 B 
+        409.txt                                                         8 B 
+        410.txt                                                         4 B 
+        411.txt                                                        15 B 
+        412.txt                                                        19 B 
+        413.txt                                                        24 B 
+        414.txt                                                        20 B 
+        415.txt                                                        22 B 
+        416.txt                                                        31 B 
+        417.txt                                                        18 B 
+        500.txt                                                        21 B 
+        501.txt                                                        15 B 
+        502.txt                                                        11 B 
+        503.txt                                                        19 B 
+        504.txt                                                        15 B 
+        505.txt                                                        26 B 
+        requestNotServed.txt                                           60 B 
+        unknown.txt                                                    28 B 
+      /lang/en/loginErrors
+        emptyUsernameOrPassword.txt                                    44 B 
+        hashFailure.txt                                                81 B 
+        invalidUsernameOrPassword.txt                                  28 B 
+        loginErrorTitle.txt                                            11 B 
+      /lang/en/loginModal
+        loginModal.ini.php                                             99 B 
+      /lang/en/setup
+        setupErrorHashText.txt                                        152 B 
+        setupErrorTitle.txt                                            11 B 
+  /libs
+    extras.lib.php                                                   1658 B 
+    main.lib.php                                                     1017 B 
+    squire.lib.php                                                  11.82 KB
+    user.lib.php                                                     2933 B 
+  /modals
+    contact.modalForm.php                                             706 B 
+    login.modalForm.php                                               447 B 
+  /templates
+    /templates/default
+      admin.template.php                                             1330 B 
+      common.template.php                                            6823 B 
+      extras.template.php                                             421 B 
+      forms.template.php                                             1283 B 
+      layout.screen.css                                             19.98 KB
+      modal.template.php                                             1351 B 
+      vars.screen.css                                                8125 B 
+      /templates/default/scripts
+        default.template.js                                          3429 B 
+        default.template.min.js                                      2488 B 
+
+
+104 files totaling 80.05 KB in 34 directories.

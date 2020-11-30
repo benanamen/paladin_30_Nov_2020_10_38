@@ -1,0 +1,1 @@
+Value must be [a-z0-9_]. Upper case and other characters not accepted for "%s"
