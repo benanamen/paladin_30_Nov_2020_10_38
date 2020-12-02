@@ -1,0 +1,100 @@
+#admin_userList table {
+	border-collapse:collapse;
+	width:100%;
+	max-width:64em;
+	margin:1em 0;
+}
+
+#admin_userList thead th {
+	background:var(--modal-heading-background);
+}
+
+#admin_userList td,
+#admin_userList th {
+	padding:0.25em 1em;
+	text-align:center;
+}
+
+#admin_userList thead th:nth-child(2),
+#admin_userList tbody th {
+	text-align:left;
+}
+
+#admin_userList tbody th {
+	font-weight:normal;
+}
+
+#admin_userList tbody td {
+	width:1%;
+	white-space:nowrap;
+}
+
+#admin_userList thead th:last-child,
+#admin_userList tbody td:last-child {
+	text-align:right;
+}
+
+#admin_userList tbody tr:nth-child(even) td,
+#admin_userList tbody tr:nth-child(even) th {
+	background:var(--section-alternate-background);
+}
+
+#userEditForm {
+	width:100%;
+	max-width:48em;
+}
+
+#userEditForm .labelInput {
+	padding-left:10em;
+}
+
+#userEditForm .title,
+#userEditForm .labelInput label {
+	float:left;
+	width:10em;
+	padding:0.25em 0.5em 0 0;
+	margin-left:-10em;
+	text-align:right;
+}
+
+#userEditForm .title:after,
+#userEditForm .labelInput label:after,
+#userEditForm .permissions legend:after {
+	content:":";
+}
+
+#userEditForm .title + span,
+#userEditForm  .labelInput input {
+	display:block;
+	width:100%;
+	margin-bottom:0.25em;
+}
+
+#userEditForm .title + span {
+	display:block;
+	padding:0.25em 0.5em;
+}
+
+#userEditForm .permissions {
+	padding:1em 0 0.75em;
+}
+
+#userEditForm .permissions fieldset {
+	padding-bottom:0.25em;
+}
+
+
+#userEditForm .permissions legend {
+	float:left;
+	width:15em;
+	text-align:right;
+}
+
+#admin {
+	text-align:center;
+}
+
+#admin .formButtons {
+	list-style:none;
+	margin:1em;
+}

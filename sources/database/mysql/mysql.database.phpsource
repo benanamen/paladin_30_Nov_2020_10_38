@@ -1,7 +1,7 @@
 <?php
 /*
 	mysql.database.php
-	30 Nov 2020 10:38 GMT
+	02 Dec 2020 14:27 GMT
 	Paladin X.4 (Squire 4)
 	Jason M. Knight, Paladin Systems North
 */
@@ -41,7 +41,7 @@ final class Database extends PDO {
 			return $this->dryStatement('exec', $name, $module, $tableName);
 		} // Database::exec
 		
-		public function prepare($name, $module = 'common', $tableName = "wtf") {
+		public function prepare($name, $module = 'common', $tableName = false) {
 			return $this->dryStatement('prepare', $name, $module, $tableName);
 		} // Database::prepare
 		
@@ -100,6 +100,7 @@ final class Database extends PDO {
 			}
 			if (
 				$method !== 'exec' &&
+				!empty($stmt) &&
 				($stmt->errorCode() > 0)
 			) $errorMessage = $stmt->errorInfo()[2];
 			if (empty($errorMessage)) return $stmt;

@@ -1,7 +1,7 @@
 <?php
 /*
 	squire.lib.php
-	30 Nov 2020 10:38 GMT
+	02 Dec 2020 14:27 GMT
 	Paladin X.4 (Squire 4)
 	Jason M. Knight, Paladin Systems North
 */
@@ -66,16 +66,19 @@ function action($db) {
 	if (!is_dir('actions/' . $action)) Bomb::http(404);
 	define('ACTION', $action);
 	
-	Load::isolate('actions/' . ACTION . '/' . ACTION . '.process.php');
+	$actionPath = 'actions/' . ACTION . '/' . ACTION;
+	Settings::loadFromIni($actionPath);
+	Load::isolate($actionPath . '.process.php');
 	process_action($db, $data);
+	if (class_exists('Extras')) Extras::process($db, $data);
 	
 	template_header($data);
-	Load::content(
+	if (!empty($data['contentFilePath'])) Load::content(
 		$data['contentFilePath'],
 		$data['pageName'],
 		$data
 	);
-	if (class_exists('Extras')) Extras::process($db, $data);
+	if (!empty($data['contentFunction'])) $data['contentFunction']($data);
 	template_footer($data);
 	
 } // action
@@ -155,12 +158,11 @@ final class Hash {
 
 	public static function matchPost($name, $destroy = true) {
 		$name .= '_hash';
-		if (!empty($_SESSION[$name])) {
-			$result = !empty($_POST[$name]) && ($_POST[$name] === $_SESSION[$name]);
-			if ($destroy) unset($_SESSION[$name]);
-			return $result;
-		}
-		return false;
+		if (empty($_SESSION[$name])) return false;
+		$hash = $_SESSION[$name];
+		if ($destroy) unset($_SESSION[$name]);
+		if (empty($_POST[$name])) return false;
+		return $_POST[$name] == $hash;
 	} // Hash::matchPost
 	
 } // Hash
@@ -185,7 +187,7 @@ final class Lang {
 
 	} // Lang::__get
 	
-	public static function getByName($name, $module) {
+	public static function getByName($name, $module = "common") {
 	
 		$lang = Settings::get('lang') ?: 'en';
 		
@@ -209,7 +211,7 @@ final class Lang {
 			'" not found in module "' . $module
 		);
 
-		return '<ins style="color:red; font-weight:bold;">LANG[' . $longName . ']</ins>';
+		return '<ins style="color:red; font-weight:bold;">LANG[' . $name . '_' . $module . ']</ins>';
 	} // Lang::__getByName
 
 } // Lang
@@ -223,8 +225,8 @@ final class Load {
 	
 	private static $processLock = false;
 	
-	public static function content($filePath, $name, $data, $handler = '') {
-		$filePath = self::loadExec($filePath, $name, $data, $handler, 'content');
+	public static function content($filePath, $name, $data, $handler = '', $type = 'content') {
+		$filePath = self::loadExec($filePath, $name, $data, $handler, $type);
 		if (file_exists($fn = $filePath . '.static')) readfile($fn);
 	} // Load::content
 	
@@ -241,7 +243,11 @@ final class Load {
 		$filePath = sprintf($filePath, $name, $name);
 		if (file_exists($fn = $filePath . '.' . $type . '.php')) {
 			include_once($fn);
-			($type . '_' . (empty($handler) ? '' : $handler . '_') . $name)($data);
+			(
+				(empty($type) ? '' : $type . '_') .
+				(empty($handler) ? '' : $handler . '_') .
+				$name
+			)($data);
 		}
 		return $filePath;
 	} // Load::loadExec
@@ -427,7 +433,7 @@ final class Settings {
 				array_key_exists($key, self::$data) &&
 				is_array(self::$data[$key])
 			) {
-				self::$data[$key] = array_merge(self::$data[$key], $value, true);
+				self::$data[$key] = array_merge(self::$data[$key], $value);
 				return;
 			}
 		}
@@ -443,26 +449,51 @@ final class Template {
 		$default = 'templates/default/';
 		
 	public static function set($name) {
+	
 		if (
 			!safeName($name) ||
 			!is_dir($name = 'template/' . $name . '/')
 		) Bomb::lang('invalidTemplateName');
+		
 		self::$path = $name;
+		
 	} // Template::set
 	
-	public static function load($name, $action = '') {
-		if (!safeName($name)) Bomb::lang('templateLoadFailure', [ $name ]);
-		$name .= '.template.php';
-		if (
-			file_exists($fn = self::$path . $name) || (
-				$actionPath ? file_exists($fn = $actionPath . $name) : false
-			) || (
-				self::$path === self::$default ? false : file_exists(
-					$fn = self::$default . $name
-				)
-			)
-		) include_once($fn);
-		else Bomb::lang('templateLoadFailure', [ $name ]);
+	public static function load(...$names) {
+		foreach ($names as $name) {
+			if (!safeName($name)) Bomb::lang('templateLoadFailed', [ $name ]);
+			if ($fn = self::resolvePath(
+				'php/' . $name . '.template.php'
+			)) include_once($fn);
+			else Bomb::lang('templateLoadFailed', [ $name ]);
+			self::loadCSS($name, 'screen', 'screen,projection,tv');
+			self::loadCSS($name, 'print', 'print');
+		}
 	} // Template::load
 	
+	public static function loadCSS($name, $ext, $media) {
+		$name .= '.' . $ext . '.css';
+		if (self::resolvePath('css/' . $name))
+			Settings::set($media, $name, 'style');
+	} // Template::loadCSS
+	
+	private static function resolvePath($pathName) {
+		return (
+			file_exists($fn = self::$path . $pathName) || (
+				self::$path === self::$default ?
+				false :
+				file_exists($fn = self::$default . $pathName)
+			)
+		) ? $fn : false;
+	} // Template::resolvePath
+	
 } // Template
+
+
+/* REMOVE FROM HERE DOWN ON DEPLOYMENT */
+function debugDump(...$var) {
+	foreach ($var as $v) {
+		echo '<pre>', var_dump($v), '</pre>';
+	}
+	die;
+} // debugDump

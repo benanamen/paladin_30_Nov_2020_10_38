@@ -1,17 +1,37 @@
-Paladin X Milestone - 30 Nov 2020 10:38 GMT
+Paladin X Milestone - 02 Dec 2020 14:27 GMT
 
 /
-  default.ini.php                                                     472 B 
+  default.ini.php                                                     699 B 
+  favicon.ico                                                        1406 B 
   index.php                                                           298 B 
   robots.txt                                                           26 B 
   user.ini.php                                                        440 B 
   /actions
+    /actions/admin
+      admin.content.php                                               268 B 
+      admin.process.php                                              1488 B 
+      /actions/admin/pages
+        /actions/admin/pages/users
+          internal_setPermissions.php                                 329 B 
+          users.content.php                                           200 B 
+          users.controls.ini.php                                       24 B 
+          users.create.content.php                                    325 B 
+          users.create.process.php                                   1222 B 
+          users.createSuccess.content.php                             284 B 
+          users.delete.process.php                                    646 B 
+          users.deleteFailed.content.php                              276 B 
+          users.deleteSuccess.content.php                             278 B 
+          users.edit.content.php                                      266 B 
+          users.edit.process.php                                     1734 B 
+          users.editSuccess.content.php                               279 B 
+          users.list.process.php                                      276 B 
+          users.process.php                                           462 B 
     /actions/contact
       contact.process.php                                             437 B 
       contact.success.content.php                                     301 B 
     /actions/setup
       setup.content.php                                               967 B 
-      setup.install.php                                              1196 B 
+      setup.install.php                                              1201 B 
       setup.process.php                                               418 B 
     /actions/static
       static.process.php                                              691 B 
@@ -21,8 +41,18 @@ Paladin X Milestone - 30 Nov 2020 10:38 GMT
           default.static                                              831 B 
   /database
     /database/mysql
-      mysql.database.php                                             4574 B 
+      mysql.database.php                                             4596 B 
       /database/mysql/queries
+        /database/mysql/queries/admin
+          admin.auth.ini.php                                           32 B 
+          admin.users_create.sql                                       97 B 
+          admin.users_delete.sql                                       39 B 
+          admin.users_edit.sql                                         89 B 
+          admin.users_flushPermissions.sql                             50 B 
+          admin.users_getForEdit.sql                                   90 B 
+          admin.users_getPermissions.sql                               70 B 
+          admin.users_getUsers.sql                                     72 B 
+          admin.users_setPermissions.sql                               88 B 
         /database/mysql/queries/common
           common.queries.ini.php                                      119 B 
         /database/mysql/queries/setup
@@ -36,6 +66,8 @@ Paladin X Milestone - 30 Nov 2020 10:38 GMT
           user.login.sql                                               73 B 
           user.touch.sql                                               71 B 
   /extras
+    /extras/admin
+      admin.extra.content.php                                         148 B 
     /extras/advert
       advert.extra.static                                              88 B 
     /extras/sample1
@@ -47,15 +79,33 @@ Paladin X Milestone - 30 Nov 2020 10:38 GMT
   /images
     skyscraperAdvertPlaceholder.png                                   371 B 
   /includes
-    httpError.php                                                     697 B 
-    langError.php                                                     999 B 
+    httpError.php                                                     765 B 
+    langError.php                                                    1805 B 
   /lang
     /lang/en
+      /lang/en/admin
+        admin.ini.php                                                 132 B 
+      /lang/en/adminUser
+        adminUser.ini.php                                             147 B 
+        createSuccessDesc.txt                                          51 B 
+        createSuccessTitle.txt                                         24 B 
+        deleteFailedDesc.txt                                           40 B 
+        deleteFailedTitle.txt                                          24 B 
+        deleteSuccessDesc.txt                                          24 B 
+        deleteSuccessTitle.txt                                         24 B 
+        editSuccessDesc.txt                                            27 B 
+        editSuccessTitle.txt                                           20 B 
       /lang/en/contact
         messageSent.txt                                                12 B 
       /lang/en/contactUsModal
         contactUsModal.ini.php                                        164 B 
       /lang/en/errors
+        adminHashFailedDesc.txt                                       113 B 
+        adminHashFailedTitle.txt                                       19 B 
+        adminUserInvalidIdDesc.txt                                    118 B 
+        adminUserInvalidIdTitle.txt                                    26 B 
+        adminUsersInvalidActionDesc.txt                                64 B 
+        adminUsersInvalidActionTitle.txt                               20 B 
         alreadyStartedDesc.txt                                         79 B 
         alreadyStartedTitle.txt                                        31 B 
         dbExecErrorDesc.txt                                            39 B 
@@ -67,12 +117,16 @@ Paladin X Milestone - 30 Nov 2020 10:38 GMT
         dbTablesMissingDesc.txt                                        27 B 
         dbTablesMissingTitle.txt                                       23 B 
         errors.ini.php                                                210 B 
+        invalidEditHashDesc.txt                                        85 B 
+        invalidEditHashTitle.txt                                       17 B 
         invalidTableNameDesc.txt                                       78 B 
         invalidTableNameTitle.txt                                      18 B 
         invalidUriDesc.txt                                             55 B 
         invalidUriTitle.txt                                            11 B 
         mainAlreadyStartedDesc.txt                                     58 B 
         mainAlreadyStartedTitle.txt                                    22 B 
+        nonAdminAccessDesc.txt                                         48 B 
+        nonAdminAccessTitle.txt                                        32 B 
         queryNotFoundDesc.txt                                          25 B 
         queryNotFoundTitle.txt                                         15 B 
         setupAlreadyRunDesc.txt                                        26 B 
@@ -81,6 +135,8 @@ Paladin X Milestone - 30 Nov 2020 10:38 GMT
         templateLoadFailedTitle.txt                                    20 B 
         unauthorizedQueryDesc.txt                                      59 B 
         unauthorizedQueryTitle.txt                                     26 B 
+        unsafeAdminActionDesc.txt                                      95 B 
+        unsafeAdminActionTitle.txt                                     28 B 
       /lang/en/httpErrors
         400.txt                                                        11 B 
         401.txt                                                        12 B 
@@ -118,26 +174,33 @@ Paladin X Milestone - 30 Nov 2020 10:38 GMT
       /lang/en/setup
         setupErrorHashText.txt                                        152 B 
         setupErrorTitle.txt                                            11 B 
+      /lang/en/userForm
+        userForm.ini.php                                              284 B 
   /libs
     extras.lib.php                                                   1658 B 
     main.lib.php                                                     1017 B 
-    squire.lib.php                                                  11.82 KB
-    user.lib.php                                                     2933 B 
+    squire.lib.php                                                  12.64 KB
+    user.lib.php                                                     2938 B 
   /modals
     contact.modalForm.php                                             706 B 
     login.modalForm.php                                               447 B 
   /templates
     /templates/default
-      admin.template.php                                             1330 B 
-      common.template.php                                            6823 B 
-      extras.template.php                                             421 B 
-      forms.template.php                                             1283 B 
-      layout.screen.css                                             19.98 KB
-      modal.template.php                                             1351 B 
-      vars.screen.css                                                8125 B 
+      /templates/default/css
+        admin.screen.css                                             1657 B 
+        layout.screen.css                                           20.51 KB
+        vars.screen.css                                              8398 B 
+      /templates/default/php
+        admin.template.php                                           1225 B 
+        admin_user_edit.template.php                                 2959 B 
+        admin_users.template.php                                     1861 B 
+        common.template.php                                          6846 B 
+        extras.template.php                                           430 B 
+        forms.template.php                                           1568 B 
+        modal.template.php                                           1378 B 
       /templates/default/scripts
         default.template.js                                          3429 B 
         default.template.min.js                                      2488 B 
 
 
-104 files totaling 80.05 KB in 34 directories.
+157 files totaling 101.06 KB in 44 directories.

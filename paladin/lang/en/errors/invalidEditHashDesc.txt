@@ -1,0 +1,1 @@
+The editor hash didn't match the one stored in the session, possible hacking attempt?

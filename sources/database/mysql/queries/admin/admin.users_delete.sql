@@ -1,0 +1,2 @@
+DELETE FROM !PREFIX!users
+WHERE id = ?

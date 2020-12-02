@@ -1,7 +1,7 @@
 <?php
 /*
 	langError.php
-	30 Nov 2020 10:38 GMT
+	02 Dec 2020 14:27 GMT
 	Paladin X.4 (Squire 4)
 	Jason M. Knight, Paladin Systems North
 */
@@ -19,28 +19,53 @@
 	
 */
 
-$data['pageTitle'] = Lang::get('paladinSystemError');
+if (!defined('DB_TABLES_EXIST')) define('DB_TABLES_EXIST', false);
 
-template_header();
+if (class_exists('Extras')) Extras::clear();
+
+template_header([
+	'pageTitle' => Lang::getByName('title', 'errors')
+]);
 
 if (is_array($data)) {
 	$title = Lang::get($data[0]);
 	$desc = Lang::get($data[1]);
 } else {
-	$title = Lang::get('@' . $data . 'Title_errors');
-	$desc = Lang::get('@' . $data . 'Desc_errors');
+	$title = Lang::getByName($data . 'Title', 'errors');
+	$desc = Lang::getByName($data . 'Desc', 'errors');
 }
 
 if ($printfData) $desc = vsprintf($desc, $printfData);
 
-error_log(Lang::get('@title_errors') . ' - ' . $title . ' - ' . $desc);
+error_log(Lang::getByName('title', 'errors') . '
+	' . $title . '
+	' . $desc . '
+	HTTP_X_FORWARDED_FOR : ' . ($_SERVER['HTTP_X_FORWARDED_FOR'] ?? 'none') . '
+	REMOTE_ADDR : ' . ($_SERVER['REMOTE_ADDR'] ?? 'none') . '
+	HTTP_USER_AGENT : ' . ($_SERVER['HTTP_USER_AGENT'] ?? 'none')
+);
 
 template_section(
 	'#paladin_error.splash',
-	Lang::get('@title_errors')
+	Lang::getByName('title', 'errors')
 );
 
-echo '
+if (
+	DB_TABLES_EXIST &&
+	User::hasPermission('admin')
+) echo '
+						<h3>', $title, '</h3>
+						<p>', $desc, '</p>
+						<dl class="errorList">
+							<dt>HTTP_X_FORWARDED_FOR</dt>
+							<dd>', $_SERVER['HTTP_X_FORWARDED_FOR'] ?? 'none', '</dd>
+							<dt>REMOTE_ADDR</dt>
+							<dd>', $_SERVER['REMOTE_ADDR'] ?? 'none', '</dd>
+							<dt>HTTP_USER_AGENT</dt>
+							<dd>', $_SERVER['HTTP_USER_AGENT'] ?? 'none', '</dd>
+						</dl>';
+
+else echo '
 						<p>
 							', Lang::get('@systemError_errors'), '
 						</p><p>

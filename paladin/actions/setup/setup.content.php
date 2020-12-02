@@ -1,7 +1,7 @@
 <?php
 /*
 	setup.content.php
-	30 Nov 2020 10:38 GMT
+	02 Dec 2020 14:27 GMT
 	Paladin X.4 (Squire 4)
 	Jason M. Knight, Paladin Systems North
 */
@@ -10,7 +10,7 @@ function content_setup($data) {
 
 	$sectionDSS = template_section('.splash', 'Setup Login');
 
-	Load::template('forms');
+	Template::load('forms');
 
 	$formDSS = template_formHeader('#stage0', 'setup');
 	

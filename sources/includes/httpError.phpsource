@@ -1,7 +1,7 @@
 <?php
 /*
 	httpError.php
-	30 Nov 2020 10:38 GMT
+	02 Dec 2020 14:27 GMT
 	Paladin X.4 (Squire 4)
 	Jason M. Knight, Paladin Systems North
 */
@@ -22,6 +22,7 @@ $codeText = $code . ' - ' . $langText;
 
 http_response_code($code);
 Settings::set($codeText, 'pageTitle');
+if (!defined('DB_TABLES_EXIST')) define('DB_TABLES_EXIST', false);
 
 template_header();
 

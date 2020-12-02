@@ -17,3 +17,12 @@ favicon[href] = favicon.ico
 [style]
 vars.screen.css = "screen,projection,tv"
 layout.screen.css = "screen,projection,tv"
+
+[DEFINE]
+USER_PERMISSIONS[] = "admin"
+USER_PERMISSIONS[] = "account_edit_self"
+USER_PERMISSIONS[] = "account_edit_others"
+USER_PERMISSIONS[] = "blog_edit"
+USER_PERMISSIONS[] = "blog_reply"
+
+PASSWORD_ALGO = "sha256"

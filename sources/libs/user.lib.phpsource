@@ -1,7 +1,7 @@
 <?php
 /*
 	user.lib.php
-	30 Nov 2020 10:38 GMT
+	02 Dec 2020 14:27 GMT
 	Paladin X.4 (Squire 4)
 	Jason M. Knight, Paladin Systems North
 */
@@ -38,7 +38,7 @@ final class User {
 					) {
 						$stmt = $db->prepExec([
 							$_POST['username'],
-							hash('sha256', $_POST['password'])
+							hash(PASSWORD_ALGO, $_POST['password'])
 						], 'login', 'user');
 						if (self::$data = $stmt->fetch()) {
 							$_SESSION['user'] = self::$data;

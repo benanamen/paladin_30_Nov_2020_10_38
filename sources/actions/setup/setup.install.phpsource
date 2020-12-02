@@ -1,7 +1,7 @@
 <?php
 /*
 	setup.install.php
-	30 Nov 2020 10:38 GMT
+	02 Dec 2020 14:27 GMT
 	Paladin X.4 (Squire 4)
 	Jason M. Knight, Paladin Systems North
 */
@@ -39,7 +39,7 @@ function install($db) {
 	$db->prepExec([
 		$_POST['admin_username'],
 		$_POST['admin_username'],
-		hash('sha256', $_POST['admin_password'])
+		hash(PASSWORD_ALGO, $_POST['admin_password'])
 	], 'user_insert', 'setup');
 	
 	$db->prepExec([
